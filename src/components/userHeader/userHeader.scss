@@ -1,0 +1,16 @@
+.userHeader__container{
+    display:flex;
+    flex-direction: row;
+    max-width: 160px;
+    .userName {
+        padding-top: 10px;
+    }
+    .user__img__container{
+        margin-left: 10px;
+        max-width:50px;
+        img{
+            width:100%;
+            border-radius: 50%;
+        }
+    }
+}
