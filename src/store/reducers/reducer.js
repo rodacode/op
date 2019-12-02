@@ -11,18 +11,24 @@ export const reducer = (state, action) => {
         case 'PLAY':
             return {
                 ...state,
-                isPlaying:true
+                isPlaying:!state.isPlaying
             }
         case 'STOP':
         return {
             ...state,
-            isPlaying:false
+            isPlaying:!state.isPlaying
         }
+        case 'SET_BPM':
+            return {
+                ...state,
+                bpm: action.payload
+            }
         default:
             return state
     }
 }
 export const store = createStore(
     reducer,
-    initialState
+    initialState,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )

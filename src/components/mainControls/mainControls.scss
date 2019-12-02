@@ -1,0 +1,30 @@
+.mainControls__container {
+    max-width: 380px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 10px;
+    border: 1px solid #22BBBB;
+    border-radius: 3px;
+    .input__label{
+        margin-top: 8px;
+        padding-right: 5px;
+    }
+    .bpm__container {
+        width: 120px;
+        padding: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .play__container {
+        width: 200px;
+        padding: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+
+    }
+
+}
