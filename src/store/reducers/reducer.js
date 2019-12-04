@@ -3,25 +3,36 @@ import { createStore } from 'redux';
 const initialState = {
     isPlaying: false,
     bpm: 120,
-    userName: 'Nico'
+    userName: 'Nico',
+    drumMachineMatrix: [  
+    [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1],
+    [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1],
+    [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1],
+    [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1],
+    [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1]]
 }
 
 export const reducer = (state, action) => {
-    switch(action.type){
+    switch (action.type) {
         case 'PLAY':
             return {
                 ...state,
-                isPlaying:!state.isPlaying
+                isPlaying: !state.isPlaying
             }
         case 'STOP':
-        return {
-            ...state,
-            isPlaying:!state.isPlaying
-        }
+            return {
+                ...state,
+                isPlaying: !state.isPlaying
+            }
         case 'SET_BPM':
             return {
                 ...state,
                 bpm: action.payload
+            }
+        case 'SET_MATRIX':
+            return {
+                ...state,
+                drumMachineMatrix: action.payload
             }
         default:
             return state
