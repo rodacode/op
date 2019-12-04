@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
+import { Howl } from 'howler';
 
 import Nexus from "nexusui";
 import { Sequencer } from 'react-nexusui';
@@ -10,16 +11,30 @@ import './drumMachine.scss';
 const DrumMachine = () => {
     const isPlaying = useSelector(state => state.isPlaying)
     const matrix = useSelector(state => state.drumMachineMatrix)
+    const ch1Volumen = useSelector(state => state.ch1Volumen)
+    const ch2Volumen = useSelector(state => state.ch2Volumen)
+    const ch3Volumen = useSelector(state => state.ch3Volumen)
+    const ch4Volumen = useSelector(state => state.ch4Volumen)
+    const ch5Volumen = useSelector(state => state.ch5Volumen)
+
     const sequencerRef = useRef(Nexus.Sequencer);
     const dispatch = useDispatch();
     const checkSound = (v) => {
-        dispatch({ type: 'SET_MATRIX', payload: sequencerRef.current.matrix.pattern})
-        for (let i = 0; i < 5; i++) {
-            if (v[i] === 1) {
-                console.log('hit number' + i)
-                console.log('FUCKK    ' +sequencerRef.current.matrix.pattern);
-            }
-        }
+        if (v[0] === 1) {
+            sound1.play()
+          }
+          if (v[1] === 1) {
+            sound2.play()
+          }
+          if (v[2] === 1) {
+            sound3.play()
+          }
+          if (v[3] === 1) {
+            sound4.play()
+          }
+          if (v[4] === 1) {
+            sound5.play()
+          }
     }
     const savePattern = (e) => {
         e.preventDefault()
@@ -51,12 +66,59 @@ const DrumMachine = () => {
 
     // SET TRACKS VOLUMEN
     const setVolumen = e => e.target.value;
-
+  // SOUNDS
+  const sound1 = new Howl({
+    src: require('../../assets/samples/kick.wav'),
+    autoplay: false,
+    loop: false,
+    volume: ch1Volumen,
+    buffer: true,
+    onend: function () {
+      console.log('Finished!');
+    }
+  });
+  const sound2 = new Howl({
+    src: require('../../assets/samples/perc.wav'),
+    autoplay: false,
+    loop: false,
+    volume: ch2Volumen,
+    buffer: true,
+    onend: function () {
+    }
+  });
+  let sound3 = new Howl({
+    src: require('../../assets/samples/clack.wav'),
+    autoplay: false,
+    loop: false,
+    volume: ch3Volumen,
+    buffer: true,
+    onend: function () {
+    }
+  });
+  const sound4 = new Howl({
+    src: require('../../assets/samples/hh.wav'),
+    autoplay: false,
+    loop: false,
+    volume: ch4Volumen,
+    buffer: true,
+    onend: function () {
+    }
+  });
+  const sound5 = new Howl({
+    src: require('../../assets/samples/hh2.wav'),
+    autoplay: false,
+    loop: false,
+    volume: ch5Volumen,
+    buffer: true,
+    onend: function () {
+    }
+  });
 
     return (
         <div className="drumMachine__main__container">
             <div className="drumMachine__header">
                 <h1>Drum Machine</h1>
+                <button className="btn" onClick={savePattern}>Save Pattern</button>
             </div>
             <div className="drumMachine__container">
                 <div id="sequencer">
@@ -69,7 +131,6 @@ const DrumMachine = () => {
                     />
                 </div>
                 <div className="volume_controls__container">
-                    <button className="btn" onClick={savePattern}>Save Pattern</button>
                     <p>VOL</p>
                     <div className="vol__control">
                         <p>OH</p>
@@ -77,9 +138,9 @@ const DrumMachine = () => {
                             size={[60, 30]}
                             interaction={"radial"}
                             onChange={() => setVolumen}
-                            value={0}
+                            value={Nexus.scale(ch5Volumen,0,1,0,127)}
                             min={0}
-                            max={10}
+                            max={127}
                         />
                     </div>
                     <div className="vol__control">
@@ -88,9 +149,9 @@ const DrumMachine = () => {
                             size={[60, 30]}
                             interaction={"radial"}
                             onChange={() => setVolumen}
-                            value={0}
+                            value={Nexus.scale(ch4Volumen,0,1,0,127)}
                             min={0}
-                            max={10}
+                            max={127}
                         />
                     </div>
                     <div className="vol__control">
@@ -99,9 +160,9 @@ const DrumMachine = () => {
                             size={[60, 30]}
                             interaction={"radial"}
                             onChange={() => setVolumen}
-                            value={0}
+                            value={Nexus.scale(ch3Volumen,0,1,0,127)}
                             min={0}
-                            max={10}
+                            max={127}
                         />
                     </div>
                     <div className="vol__control">
@@ -110,9 +171,9 @@ const DrumMachine = () => {
                             size={[60, 30]}
                             interaction={"radial"}
                             onChange={() => setVolumen}
-                            value={0}
+                            value={Nexus.scale(ch2Volumen,0,1,0,127)}
                             min={0}
-                            max={10}
+                            max={127}
                         />
                     </div>
                     <div className="vol__control">
@@ -121,9 +182,9 @@ const DrumMachine = () => {
                             size={[60, 30]}
                             interaction={"radial"}
                             onChange={() => setVolumen}
-                            value={0}
+                            value={Nexus.scale(ch1Volumen,0,1,0,127)}
                             min={0}
-                            max={10}
+                            max={127}
                         />
                     </div>
                 </div>
