@@ -6,11 +6,22 @@ import Header from '../../components/header/Header';
 import './audioRack.scss';
 
 const AudioRack = () => {
+    let audioContext;
+    try {
+        audioContext =
+            new (window.AudioContext || window.webkitAudioContext)();
+    } catch (error) {
+        window.alert(
+            `Sorry, but your browser doesn't support the Web Audio API!`
+        );
+    }
     return (
         <div className="audioRack__container">
-            <Header />
-            <MainControls />
-            <DrumMachine />
+            {audioContext && <div>
+                <Header />
+                <MainControls />
+                <DrumMachine />
+            </div>}
         </div>
 
     )

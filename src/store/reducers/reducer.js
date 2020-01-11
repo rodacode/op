@@ -2,19 +2,19 @@ import { createStore } from 'redux';
 
 const initialState = {
     isPlaying: false,
-    bpm: 120,
+    bpm: 130,
     userName: 'Nico',
-    drumMachineMatrix: [  
-    [0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0],
-    [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1],
-    [0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0],
-    [0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1],
-    [1,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0]],
-    ch1Volumen:0.5,
-    ch2Volumen:0.7,
-    ch3Volumen:0.8,
-    ch4Volumen:0.7,
-    ch5Volumen:0.8,
+    drumMachineMatrix: [
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+        [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]],
+    ch1Volumen: 0.5,
+    ch2Volumen: 0.7,
+    ch3Volumen: 0.8,
+    ch4Volumen: 0.7,
+    ch5Volumen: 0.8,
 }
 
 export const reducer = (state, action) => {
@@ -38,6 +38,11 @@ export const reducer = (state, action) => {
             return {
                 ...state,
                 drumMachineMatrix: action.payload
+            }
+        case 'SET_VOLUMEN':
+            return {
+                ...state,
+                ch1Volumen: action.payload
             }
         default:
             return state
