@@ -1,16 +1,16 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import './mainControls.scss';
 import { Toggle } from 'react-nexusui';
 
 const MainControls = () => {
-    const isPlaying = useSelector(state => state.isPlaying);
-    const bpm = useSelector(state => state.bpm);
+    const isPlaying = useSelector(state => state.settings.isPlaying);
+    const bpm = useSelector(state => state.settings.bpm);
     const dispatch = useDispatch();
     const setBpm = e => dispatch({ type: 'SET_BPM', payload: e.target.value })
 
     const play = () => {
-        if (isPlaying) {
+        if (!isPlaying) {
             dispatch({ type: 'PLAY' })
         }
         else {
