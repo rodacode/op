@@ -18,6 +18,7 @@ const DrumMachine = () => {
     const ch4Volumen = useSelector(state => state.drumMachine.ch4Volumen)
     const ch5Volumen = useSelector(state => state.drumMachine.ch5Volumen)
     const sequencerRef = useRef(Nexus.Sequencer);
+    const dialBDRef = useRef(Nexus.Dial);
     const dispatch = useDispatch();
     const checkSound = (v) => {
         if (v[0] === 1) {
@@ -56,9 +57,15 @@ const DrumMachine = () => {
     //POPULATE SEQUENCER MATRIX PATTERN
     useEffect(() => {
         sequencerRef.current.matrix.set.all(matrix);
+
         //COLORS
         sequencerRef.current.colorize("accent", "#ff0000");
 
+    });
+
+    //POPULATE SEQUENCER MATRIX PATTERN
+    useEffect(() => {
+        dialBDRef.current.volue = 0.3;
     });
 
     // SET TRACKS VOLUMEN
@@ -86,6 +93,7 @@ const DrumMachine = () => {
         autoplay: false,
         loop: false,
         buffer: true,
+        volume: ch1Volumen,
         onend: function () {
             console.log('Finished!');
         }
@@ -95,6 +103,7 @@ const DrumMachine = () => {
         autoplay: false,
         loop: false,
         buffer: true,
+        volume: ch2Volumen,
         onend: function () {
         }
     });
@@ -103,6 +112,7 @@ const DrumMachine = () => {
         autoplay: false,
         loop: false,
         buffer: true,
+        volume: ch3Volumen,
         onend: function () {
         }
     });
@@ -111,6 +121,7 @@ const DrumMachine = () => {
         autoplay: false,
         loop: false,
         buffer: true,
+        volume: ch4Volumen,
         onend: function () {
         }
     });
@@ -119,6 +130,7 @@ const DrumMachine = () => {
         autoplay: false,
         loop: false,
         buffer: true,
+        volume: ch5Volumen,
         onend: function () {
         }
     });
@@ -146,10 +158,10 @@ const DrumMachine = () => {
                         <Dial
                             size={[60, 30]}
                             interaction={"radial"}
-                            onChange={(v) => setVolumen(Nexus.scale(v, 0, 127, 0, 1), 'ch5Volumen')}
-                            value={Nexus.scale(ch5Volumen, 0, 1, 0, 127)}
+                            onChange={(v) => setVolumen(v, 'ch5Volumen')}
+                            value={ch5Volumen}
                             min={0}
-                            max={127}
+                            max={1}
                         />
                     </div>
                     <div className="vol__control">
@@ -157,10 +169,10 @@ const DrumMachine = () => {
                         <Dial
                             size={[60, 30]}
                             interaction={"radial"}
-                            onChange={(v) => setVolumen(Nexus.scale(v, 0, 127, 0, 1), 'ch4Volumen')}
-                            value={Nexus.scale(ch4Volumen, 0, 1, 0, 127)}
+                            onChange={(v) => setVolumen(v, 'ch4Volumen')}
+                            value={ch4Volumen}
                             min={0}
-                            max={127}
+                            max={1}
                         />
                     </div>
                     <div className="vol__control">
@@ -168,10 +180,10 @@ const DrumMachine = () => {
                         <Dial
                             size={[60, 30]}
                             interaction={"radial"}
-                            onChange={(v) => setVolumen(Nexus.scale(v, 0, 127, 0, 1), 'ch3Volumen')}
-                            value={Nexus.scale(ch3Volumen, 0, 1, 0, 127)}
+                            onChange={(v) => setVolumen(v, 'ch3Volumen')}
+                            value={ch3Volumen}
                             min={0}
-                            max={127}
+                            max={1}
                         />
                     </div>
                     <div className="vol__control">
@@ -179,10 +191,10 @@ const DrumMachine = () => {
                         <Dial
                             size={[60, 30]}
                             interaction={"radial"}
-                            onChange={(v) => setVolumen(Nexus.scale(v, 0, 127, 0, 1), 'ch2Volumen')}
-                            value={Nexus.scale(ch2Volumen, 0, 1, 0, 127)}
+                            onChange={(v) => setVolumen(v, 'ch2Volumen')}
+                            value={ch2Volumen}
                             min={0}
-                            max={127}
+                            max={1}
                         />
                     </div>
                     <div className="vol__control">
@@ -190,10 +202,12 @@ const DrumMachine = () => {
                         <Dial
                             size={[60, 30]}
                             interaction={"radial"}
-                            onChange={(v) => setVolumen(Nexus.scale(v, 0, 127, 0, 1), 'ch1Volumen')}
-                            value={Nexus.scale(ch1Volumen, 0, 1, 0, 127)}
+                            onChange={(v) => setVolumen(v, 'ch1Volumen')}
+                            value={ch1Volumen}
                             min={0}
-                            max={127}
+                            max={1}
+                            onReady={dialBD => (dialBDRef.current = dialBD)}
+
                         />
                     </div>
                 </div>
