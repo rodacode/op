@@ -63,7 +63,7 @@ const DrumMachine = () => {
 
     });
 
-    //POPULATE SEQUENCER MATRIX PATTERN
+    //WORKAROUND TO TRY TO HAVE THE DIAL VALUE DISPLAYED
     useEffect(() => {
         dialBDRef.current.volue = 0.3;
     });
