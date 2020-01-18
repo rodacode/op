@@ -136,7 +136,7 @@ const DrumMachine = () => {
     });
 
     return (
-        <div className="drumMachine__main__container">
+        <div className="drumMachine__main__container" data-testid="drumMachine">
             <div className="drumMachine__header">
                 <h1>Drum Machine</h1>
                 <button className="btn" onClick={savePattern}>Save Pattern</button>

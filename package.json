@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@testing-library/jest-dom": "^5.0.0",
     "howler": "^2.1.2",
     "nexusui": "^2.0.10",
     "node-sass": "^4.13.0",
@@ -39,6 +40,7 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/react": "^9.4.0",
     "gh-pages": "^2.1.1"
   }
 }
