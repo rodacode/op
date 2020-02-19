@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, getByTestId } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect'
 import DrumMachine from '../components/drumMachine/DrumMachine';
 import { createStore } from 'redux';
