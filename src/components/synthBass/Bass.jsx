@@ -45,12 +45,12 @@ const Synth = () => {
 
     });
     return (
-        <div className="synth__main__container">
-            <div className="synth__header">
-                <h1>Synth</h1>
+        <div className="bass__main__container">
+            <div className="bass__header">
+                <h1>Bass</h1>
                 <button className="btn" onClick={savePattern}>Save Pattern</button>
             </div>
-            <div className="drumMachine__container">
+            <div className="bass__sequencer__container">
                 <div id="sequencer">
                     <Sequencer
                         rows={5}
